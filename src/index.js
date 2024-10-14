@@ -1,9 +1,14 @@
-import './style.css';
 import axios from 'axios';
-import Swal from 'sweetalert2'
+import './style.css';
 import 'materialize-css/dist/css/materialize.min.css'
 import { initSwiper } from './components/swiper';
-import { cards } from './components/cards';
+import { renderQuestions } from './components/render';
+import { alertCorrect, alertIncorrect } from './components/alerts';
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('select');
+  var instances = M.FormSelect.init(elems);
+});
 
 const score = document.getElementById('score');
 const questionsLength = document.getElementById('questions-length');
@@ -11,7 +16,25 @@ const questionsLength = document.getElementById('questions-length');
 let correctAnswers = [];
 let setScore = 0;
 
-axios.get('https://opentdb.com/api.php?amount=10&type=multiple')
+document.getElementById('form').addEventListener('submit', function(event) {
+  event.preventDefault();
+  
+  const form = event.target; 
+  const amount = form.elements['amount'].value;
+  const difficulty = form.elements['difficulty'].value;
+  console.log(amount);
+  console.log(difficulty);
+  fetchData(amount, difficulty)
+});
+
+function fetchData(amount, difficulty) {
+axios.get('https://opentdb.com/api.php?', {
+  params: {
+    amount: amount,
+    type: "multiple",
+    difficulty: difficulty,
+  }
+})
   .then(function (response) {
     // manejar respuesta exitosa
     const results = response.data.results;
@@ -26,22 +49,9 @@ axios.get('https://opentdb.com/api.php?amount=10&type=multiple')
   .finally(function () {
     // siempre sera executado
   });
+}
 
   let swiperInstance;
-  function renderQuestions(questions) {
-    const container = document.getElementById('container');
-    let idx = 0;
-    container.innerHTML = '';
-    console.log(questions.length);
-    questions.forEach(question => {
-      idx++;
-      question.incorrect_answers.push(question.correct_answer);
-      question.incorrect_answers.sort(() => Math.random() - 0.5)
-      const card = cards(question.question, question.category, question.difficulty, question.incorrect_answers, idx);
-      container.innerHTML += card;
-    });
-    swiperInstance = initSwiper();
-  }
 
   window.getAnswers = function(value) {
     let selectAnswer = value.getAttribute("data-answer");
@@ -58,23 +68,4 @@ axios.get('https://opentdb.com/api.php?amount=10&type=multiple')
       swiperInstance.slideNext();
     }
   };
-  
-  function alertCorrect() {
-    Swal.fire({
-      position: "top-end",
-      icon: "success",
-      title: "Correct!!!",
-      showConfirmButton: false,
-      timer: 1500
-    });
-  }
-
-  function alertIncorrect() {
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Incorrect answer!",
-      footer: '<a href="#">Why do try again?</a>'
-    });
-  }
   

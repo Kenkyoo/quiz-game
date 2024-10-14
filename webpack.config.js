@@ -3,7 +3,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: {
+    main: './src/index.js',
+    categories: './src/categories.js', // Agregando otro archivo JS
+  },
   devServer: {
 
     static: './dist',

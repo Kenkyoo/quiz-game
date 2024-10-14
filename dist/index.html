@@ -5,8 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<script defer src="runtime.bundle.js"></script><script defer src="main.bundle.js"></script></head>
+<script defer src="runtime.bundle.js"></script><script defer src="main.bundle.js"></script><script defer src="categories.bundle.js"></script></head>
 <body>
+  
+  <div class="row">
+    <form id="form" class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="Max: 50" name="amount" type="number" class="validate">
+          <label for="first_name">Cantidad de preguntas:</label>
+        </div>
+        <div class="input-field col s12">
+          <select name="difficulty">
+            <option value="any">Any</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+          <label>Materialize Select</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input disabled value="I am not editable" id="disabled" type="text" class="validate">
+          <label for="disabled">Disabled</label>
+        </div>
+      </div>
+      <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
+  </div>
   <div>
     <div>
       <i class="material-icons">attach_money</i>
@@ -29,6 +58,5 @@
       <div class="swiper-scrollbar"></div>
     </div>
     <div id="message-container"></div>
-     
 </body>
 </html>

@@ -1,20 +1,55 @@
-@import 'https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap';
+@use 'header';
 
+// Importar Materialize Variables y Componentes
+@import '../node_modules/materialize-css/sass/components/_color-variables.scss';
+@import '../node_modules/materialize-css/sass/components/_variables.scss';
+@import '../node_modules/materialize-css/sass/materialize.scss';
 
-$primary-color: color("materialize-red", "lighten-2") !default;
-$primary-color-light: false !default;
-$primary-color-dark: false !default;
-@if not $primary-color-light {
-  $primary-color-light: lighten($primary-color, 15%);
-}
-@if not $primary-color-dark {
-  $primary-color-dark: darken($primary-color, 15%);
-}
-$secondary-color: color("teal", "lighten-1") !default;
-$success-color: color("green", "base") !default;
-$error-color: color("red", "base") !default;
+// Colores
+$primary-color: material-color("teal", "600");
+$secondary-color: material-color("orange", "500");
+$background-color: material-color("grey", "100");
+$text-color: material-color("grey", "900");
+$highlight-color: material-color("lime", "400");
+$error-color: material-color("red", "600");
 
-$link-color: color("light-blue", "darken-1") !default;
+// Sobrescribir variables específicas de Materialize
+$primary-text-color: $text-color;
+$secondary-text-color: material-color("grey", "600");
+$link-color: $primary-color;
+$input-border-color: material-color("deep-orange", "300");
+
+// Personalizaciones para tarjetas y botones
+$card-background-color: $background-color;
+$card-border-radius: 8px;
+$card-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+$button-background-color: $primary-color;
+$button-hover-background-color: material-color("deep-orange", "700");
+$button-text-color: #fff;
+
+// Estilos para el navbar
+$navbar-background-color: $primary-color;
+$navbar-text-color: $text-color;
+
+// Tipografías
+$font-family: 'Roboto', sans-serif;
+$header-font: 'Montserrat', sans-serif;
+$base-font-size: 16px;
+$heading-size: 32px;
+
+// Tamaños globales
+$border-radius: 5px;
+$container-padding: 20px;
+
+// Sombras
+$box-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
+$box-shadow-heavy: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+// Variables específicas del tema
+$button-bg-color: $primary-color;
+$button-text-color: #fff;
+
 
 %font-family {
     font-family: "Afacad Flux", sans-serif;
@@ -23,12 +58,111 @@ $link-color: color("light-blue", "darken-1") !default;
     font-style: normal;  
 }
 
-@use header;
+%flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+%swiper-styles {
+    width: 100%;
+    height: auto;
+}
 
 body {
   @extend %font-family;
   margin: 0;
   padding: 0;
+  background-color: $background-color;
+  color: $text-color;
+}
+
+h1, h2, h3 {
+    font-family: $header-font;
+    color: $primary-color;
+  }
+  
+  button {
+    background-color: $button-bg-color;
+    color: $button-text-color;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow-light;
+  
+    &:hover {
+      box-shadow: $box-shadow-heavy;
+    }
+  }
+
+// Navbar personalizado
+nav {
+    background-color: $navbar-background-color;
+  
+    a {
+      color: $navbar-text-color !important;
+    }
+  }
+
+  // Botones personalizados
+.btn {
+    background-color: $button-background-color;
+    color: $button-text-color;
+  
+    &:hover {
+      background-color: $button-hover-background-color;
+    }
+  }
+  
+  // Tarjetas personalizadas
+  .card {
+    background-color: $card-background-color;
+    border-radius: $card-border-radius;
+    box-shadow: $card-box-shadow;
+  }
+  
+  // Inputs con bordes y colores personalizados
+  input {
+    border-color: $input-border-color;
+  
+    &:focus {
+      border-bottom-color: $primary-color !important;
+      box-shadow: 0 1px 0 0 $primary-color !important;
+    }
+  
+    &.invalid {
+      border-bottom-color: $error-color !important;
+      box-shadow: 0 1px 0 0 $error-color !important;
+    }
+  }
+  
+  // Iconos resaltados
+  .material-icons {
+    color: $highlight-color;
+  }
+  
+  // Barra de progreso personalizada
+  .progress {
+    background-color: $secondary-color;
+  }
+
+.swiper {
+    @extend %swiper-styles;
+}
+
+#score {
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: bolder;
+    padding: 10px 20px 30px;
+    text-align: center;
+    margin-top: 10px
+}
+
+.flex-elements {
+    @extend %flex-center;
+}
+
+.show-game {
+    min-height: 100vh;
 }
 
 .icon-block {
@@ -37,3 +171,22 @@ body {
   .icon-block .material-icons {
       font-size: inherit;
   }
+
+  .animate__animated {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  #score, .new.badge {
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  #score:hover {
+    transform: scale(1.2);
+  }
+
+  button, .btn-large {
+    transition: box-shadow 0.3s ease;
+    &:hover {
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    }
+}

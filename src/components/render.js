@@ -16,3 +16,5 @@ export function renderQuestions(questions) {
   });
   swiperInstance = initSwiper();
 }
+
+export { swiperInstance };

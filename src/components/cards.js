@@ -2,7 +2,7 @@ import 'materialize-css'
 
 export function cards(title, category, difficulty, answers, idx) {
 return `  
-    <div class="swiper-slide">
+    <div class="swiper-slide z-depth-5">
       <div class="card blue-grey darken-1">
         <div class="card-content white-text">
           <span class="card-title">${title}</span>

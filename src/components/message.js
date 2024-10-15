@@ -2,7 +2,7 @@ export function showCompletionMessage(currentScore, totalQuestions) {
     const message = setResult(currentScore);
     document.querySelector('.swiper').style.display = "none";
     document.getElementById('message-container').innerHTML = `  
-    <div class="card">
+    <div class="card animate__animated animate__tada">
       <div class="card-image waves-effect waves-block waves-light">
         <img class="activator" src="images/office.jpg">
       </div>

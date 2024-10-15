@@ -1,7 +1,8 @@
 import axios from 'axios';
 import './style.css';
+import 'animate.css';
 import 'materialize-css/dist/css/materialize.min.css'
-import { initSwiper } from './components/swiper';
+import { swiperInstance } from './components/render';
 import { renderQuestions } from './components/render';
 import { alertCorrect, alertIncorrect } from './components/alerts';
 
@@ -18,7 +19,9 @@ let setScore = 0;
 
 document.getElementById('form').addEventListener('submit', function(event) {
   event.preventDefault();
-  
+  document.getElementById('form-section').style.display = "none";
+  document.getElementById('index-banner').style.display = "none";
+  document.getElementById('game-section').classList.add('show-game', 'animate__bounce');
   const form = event.target; 
   const amount = form.elements['amount'].value;
   const difficulty = form.elements['difficulty'].value;
@@ -54,18 +57,18 @@ axios.get('https://opentdb.com/api.php?', {
   });
 }
 
-  let swiperInstance;
-
   window.getAnswers = function(value) {
     let selectAnswer = value.getAttribute("data-answer");
     let answer = correctAnswers.includes(selectAnswer);
     if (answer) {
+      score.classList.add('animate__shakeY')
       value.style.color = 'green';
       alertCorrect()
       setScore++;
       score.innerHTML = setScore;      
       swiperInstance.slideNext();
     } else {
+      score.classList.add('animate__shakeX')
       value.style.color = 'red';
       alertIncorrect()
       swiperInstance.slideNext();

@@ -22,17 +22,20 @@ document.getElementById('form').addEventListener('submit', function(event) {
   const form = event.target; 
   const amount = form.elements['amount'].value;
   const difficulty = form.elements['difficulty'].value;
+  const categories = form.elements['categories'].value;
   console.log(amount);
   console.log(difficulty);
-  fetchData(amount, difficulty)
+  console.log(categories);
+  fetchData(amount, difficulty, categories)
 });
 
-function fetchData(amount, difficulty) {
+function fetchData(amount, difficulty, categories) {
 axios.get('https://opentdb.com/api.php?', {
   params: {
     amount: amount,
     type: "multiple",
     difficulty: difficulty,
+    category: categories, 
   }
 })
   .then(function (response) {

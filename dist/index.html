@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Quiz Game</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script defer src="runtime.bundle.js"></script><script defer src="main.bundle.js"></script><script defer src="categories.bundle.js"></script></head>
 <body>
-  <nav class="light-blue lighten-1" role="navigation">
+  <nav class="nav" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
+        <li><a href="#form">Start</a></li>
       </ul>
 
       <ul id="nav-mobile" class="sidenav">
-        <li><a href="#">Navbar Link</a></li>
+        <li><a href="#form">Start</a></li>
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
@@ -23,12 +23,12 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center orange-text animate__animated animate__backInLeft">Starter Template</h1>
+      <h1 class="header center animate__animated animate__backInLeft">The Quiz Game</h1>
       <div class="row center">
-        <h5 class="header col s12 light animate__animated animate__backInRight">A modern responsive front-end framework based on Material Design</h5>
+        <h5 class="header col s12 animate__animated animate__backInRight">A simple game trivia</h5>
       </div>
       <div class="row center">
-        <a href="#form" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
+        <a href="#form" id="download-button" class="btn btn-large waves-effect waves-light">Get Started</a>
       </div>
       <br><br>
     </div>
@@ -38,9 +38,10 @@
 
   <div class="container" id="form-section">
     <div class="row">
-      <div class="col s6">
+      <div class="col s6 collection-container">
         <h4>You can start the game, in 4 simple steps:</h4>
         <ul class="collection">
+          <li class="collection-header"><h4>Create the game:</h4></li>
           <li class="collection-item">Choose the number of questions.</li>
           <li class="collection-item">Choose the difficulty</li>
           <li class="collection-item">Choose the category</li>
@@ -51,11 +52,11 @@
         <div class="row">
           <form id="form" class="col s12">
             <div class="row">
-        <div class="input-field col s6">
+              <div class="input-field col s6">
           <input placeholder="Max: 50" name="amount" type="number" class="validate" min="1" max="50">
           <label for="first_name">Number of questions:</label>
-        </div>
-        <div class="input-field col s12">
+              </div>
+              <div class="input-field col s12">
           <select name="difficulty">
             <option value="any">Any</option>
             <option value="easy">Easy</option>
@@ -63,14 +64,14 @@
             <option value="hard">Hard</option>
           </select>
           <label>Difficulty</label>
-        </div>
+              </div>
             </div>
             <div class="row">
-        <div class="input-field col s12">
+              <div class="input-field col s12">
           <select name="categories" id="select-categories">
           </select>
           <label>Category</label>
-        </div>
+              </div>
             </div>
             <button class="btn waves-effect waves-light pulse" type="submit" name="action">Create
               <a href="#swiper"><i class="material-icons right">send</i></a>
@@ -88,7 +89,7 @@
       <div class="col s6 flex-elements">
         <i class="material-icons pulse">attach_money</i>
         <h4>Score:</h4>
-        <span id="score" class="new badge animate__animated" data-badge-caption="Points">0</span>
+        <span id="score" class="new badge animate__animated pulse" data-badge-caption="Points">0</span>
       </div>
       <div class="col s6 flex-elements">
         <i class="material-icons pulse">grade</i>
